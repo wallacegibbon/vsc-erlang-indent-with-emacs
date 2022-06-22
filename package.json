@@ -2,7 +2,9 @@
 	"name": "erlang-indent-with-emacs",
 	"displayName": "Erlang Indent With Emacs",
 	"description": "indent the erlang source code with emacs",
-	"version": "1.0.0",
+	"version": "1.0.1",
+	"publisher": "wallacegibbon",
+	"license": "Apache License",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/wallacegibbon/vsc-erlang-indent-with-emacs.git"

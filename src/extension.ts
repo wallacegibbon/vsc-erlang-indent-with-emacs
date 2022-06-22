@@ -28,7 +28,8 @@ function indent_with_emacs(current_buffer_file_path: string) {
 (delete-trailing-whitespace)
 (untabify (point-min) (point-max))
 (write-region (point-min) (point-max) "${current_buffer_file_path}")
-(kill-emacs))`.replace(/\n/g, " ");
+(kill-emacs))`
+        .replace(/\n/g, " ");
 }
 
 function format(file_path: string, output_channel: vscode.OutputChannel): Promise<TextEdit[]> {
@@ -55,9 +56,6 @@ function format(file_path: string, output_channel: vscode.OutputChannel): Promis
         });
 
         formatter.stdout.on("data", (data) => {
-            if (false) {
-                window.showErrorMessage(data.toString());
-            }
             output_channel.appendLine(data);
         });
 
