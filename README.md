@@ -21,4 +21,13 @@ I prefer the Emacs way, this is why this tool is created.
 
 This extension won't change frequently, but I will update it when incompatible changes were introduced by VSCode.
 
+## About VSCode version
+
+This extension only works for VSCode newer than "1.68.0". (this is the limit from the auto-generated package.json).
+
+It should work on older versions (since this extension is simple and doesn't use many APIs of VSCode), but it is not convenient for me to test those old versions. And I don't really have the time to do those tests.
+
+You are very welcomed to fork this extension and make it support old versions of VSCode.
+
 **Enjoy!**
+
