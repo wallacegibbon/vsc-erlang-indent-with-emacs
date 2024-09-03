@@ -38,20 +38,28 @@ function indent_with_emacs(current_buffer_file_path: string, point_start: number
 }
 
 function get_region_points(document: TextDocument, range: Range) {
-    let total_length = 0;
-    let point_start = 0;
-    let point_end = 0;
-    for (let i = 0; i < document.lineCount; ++i) {
-        if (i === range.start.line) {
-            point_start = total_length + range.start.character + 1;
-        }
-        if (i === range.end.line) {
-            point_end = total_length + range.end.character + 1;
-            break;
-        }
-        total_length += document.getText(document.lineAt(i).rangeIncludingLineBreak).length;
+
+    function countCharacters(text: string): number {
+        // This method counts the actual number of characters, not UTF-16 code units
+        return Array.from(text).length;
     }
-    return [point_start, point_end];
+
+    // Calculate the start character index
+    let startCharIndex = 0;
+    for (let i = 0; i < range.start.line; i++) {
+        startCharIndex += countCharacters(document.lineAt(i).text) + 1; // Add 1 for the newline character
+    }
+    startCharIndex += countCharacters(document.lineAt(range.start.line).text.slice(0, range.start.character));
+
+    // Calculate the end character index
+    let endCharIndex = 0;
+    for (let i = 0; i < range.end.line; i++) {
+        endCharIndex += countCharacters(document.lineAt(i).text) + 1; // Add 1 for the newline character
+    }
+    endCharIndex += countCharacters(document.lineAt(range.end.line).text.slice(0, range.end.character));
+
+    return [startCharIndex+1, endCharIndex+1];
+
 }
 
 function format(document: TextDocument, range: Range, options: FormattingOptions, output_channel: vscode.OutputChannel): Promise<TextEdit[]> {
