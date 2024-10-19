@@ -2,7 +2,7 @@
 	"name": "erlang-indent-with-emacs",
 	"displayName": "Erlang Indent With Emacs",
 	"description": "indent the erlang source code with emacs",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"publisher": "wallacegibbon",
 	"license": "Apache License",
 	"repository": {
